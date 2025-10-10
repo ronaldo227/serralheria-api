@@ -120,7 +120,7 @@ Content-Type: application/json
 Para solicitações de uso, dúvidas ou propostas profissionais:
 
 - 📧 Email: seuemail@exemplo.com
-- 💼 LinkedIn: [ronaldo-silva-4ba80851](https://www.linkedin.com/in/ronaldo-silva-4ba80851/)
+- 💼 LinkedIn:
 
 <!--
 Ou, se preferir, preencha o formulário de solicitação de uso:
