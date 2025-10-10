@@ -4,31 +4,25 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 
 ---
 
-## Exemplo de ciclo
-
-### Ciclo 1 - [Data]
+## Ciclo 1 - 10/10/2025
 - **Objetivo:**
-  - Exemplo: Implementar cadastro básico de clientes.
+  - Estruturar o Painel Administrativo para gestão de permissões e colaboradores.
 - **Requisitos:**
-  - Cadastro de nome, email e telefone.
+  - Cadastro de administradores.
+  - Definição de níveis de permissão.
+  - Interface para atribuição de permissões aos colaboradores.
 - **Riscos/Desafios:**
-  - Integração inicial com banco de dados.
+  - Garantir segurança no controle de acesso.
+  - Definir modelo flexível para permissões.
 - **Entregas:**
-  - Endpoint POST /clientes funcionando.
+  - Estrutura base do painel admin (rotas, controller, service, model).
+  - Documentação do fluxo de permissões.
 - **Validação/Feedback:**
-  - Testes manuais realizados, feedback positivo do usuário.
+  - Revisão do fluxo por stakeholders.
+  - Testes manuais de cadastro e atribuição de permissões.
 - **Ajustes para o próximo ciclo:**
-  - Adicionar validação de email.
-
----
-
-## Ciclo 2 - [Data]
-- **Objetivo:**
-- **Requisitos:**
-- **Riscos/Desafios:**
-- **Entregas:**
-- **Validação/Feedback:**
-- **Ajustes para o próximo ciclo:**
+  - Implementar autenticação e proteção de rotas.
+  - Iniciar integração com domínios operacionais.
 
 ---
 

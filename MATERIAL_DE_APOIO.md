@@ -1,3 +1,46 @@
+# Apoio Prático: Painel Administrativo e Permissões
+
+## Checklist para o Ciclo do Painel Admin
+- [ ] Definir requisitos do painel (ex: cadastro de admins, atribuição de permissões)
+- [ ] Modelar entidades: Admin, Colaborador, Permissão
+- [ ] Criar migrations/models no Prisma
+- [ ] Implementar rotas base no painel (`src/routes/painelAdm.ts`)
+- [ ] Criar controllers e services para admins e permissões
+- [ ] Planejar níveis de acesso (ex: admin, gerente, colaborador)
+- [ ] Documentar fluxo de permissões e exemplos de uso
+
+## Exemplo de Modelagem de Permissões (Prisma)
+```prisma
+model Admin {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  email      String      @unique
+  senha      String
+  permissoes Permissao[]
+}
+
+model Permissao {
+  id      Int    @id @default(autoincrement())
+  nome    String
+  adminId Int
+  admin   Admin  @relation(fields: [adminId], references: [id])
+}
+```
+
+## Roteiro Prático para o Painel Admin
+1. **Planeje as regras de negócio:**
+  - Quem pode criar/editar permissões?
+  - Quais ações cada permissão libera?
+2. **Implemente as migrations:**
+  - Use o exemplo acima para criar as tabelas.
+3. **Implemente os endpoints:**
+  - Cadastro de admin, login, atribuição de permissões.
+4. **Proteja as rotas:**
+  - Use middlewares para garantir que só admins autorizados acessem o painel.
+5. **Teste o fluxo:**
+  - Simule diferentes níveis de acesso e revise a segurança.
+
+> Dica: Documente exemplos de uso e fluxos de permissão para facilitar a manutenção e onboarding de novos colaboradores.
 # Material de Apoio: Ciclo de Desenvolvimento com Prisma
 
 ## Passos para o Primeiro Ciclo (MVP ou Funcionalidade Inicial)
@@ -60,9 +103,21 @@ export default {
 ### 8. Implemente as Rotas
 - Adicione as rotas REST em `src/routes/clientes.ts` para expor as operações do domínio.
 
-### 9. Teste Localmente
-- Use ferramentas como Postman ou Insomnia para testar os endpoints.
-- Exemplo de modelo de teste para o endpoint de clientes:
+- Use ferramentas como Postman ou Insomnia para testar os endpoints de todos os domínios, incluindo o painel administrativo.
++
+> **Atenção:** Os exemplos de endpoints e fluxos de teste podem ser mudados ou melhorados em outros ciclos, conforme o projeto evoluir.
+- Use ferramentas como Postman ou Insomnia para testar os endpoints de todos os domínios, incluindo o painel administrativo.
+
+#### Exemplo de modelo de teste para o Painel Admin:
+
+| Método | Endpoint                | Descrição                        | Exemplo de Body/Query         |
+|--------|-------------------------|----------------------------------|-------------------------------|
+| GET    | /painel-adm/admins      | Listar todos os administradores  | -                             |
+| POST   | /painel-adm/admins      | Criar novo admin                 | `{ "nome": "Admin", "email": "admin@email.com", "senha": "123456" }` |
+| POST   | /painel-adm/permissoes  | Atribuir permissão a um admin    | `{ "adminId": 1, "nome": "GERENCIAR_CLIENTES" }` |
+| GET    | /painel-adm/permissoes  | Listar permissões                | -                             |
+
+#### Exemplo de modelo de teste para o endpoint de clientes:
 
 | Método | Endpoint           | Descrição                | Exemplo de Body/Query         |
 |--------|--------------------|--------------------------|-------------------------------|
@@ -72,7 +127,7 @@ export default {
 | PUT    | /clientes/:id      | Atualizar cliente        | `{ "nome": "João Silva" }`  |
 | DELETE | /clientes/:id      | Remover cliente          | -                             |
 
-- Teste cada endpoint com dados reais e verifique as respostas e validações.
+- Teste cada endpoint com dados reais, diferentes níveis de permissão e verifique as respostas, validações e restrições de acesso.
 
 ### 10. Documente e Registre o Ciclo
 - Atualize o README e registre o que foi entregue no ciclo.

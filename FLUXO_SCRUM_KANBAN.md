@@ -49,13 +49,17 @@
 ## Ferramentas Recomendadas
 - Trello, Jira, GitHub Projects, Azure Boards, Notion.
 
-## Exemplo de Quadro Kanban Profissional
 
-| Backlog                | A Fazer         | Em Andamento   | Em Revisão   | Concluído      |
-|------------------------|-----------------|---------------|--------------|---------------|
-| Nova feature X         |                 | Bug Y         |              | Deploy Sprint |
-| Refatorar módulo Z     |                 |               |              |               |
-| Documentar endpoints   |                 |               |              |               |
+## Exemplo de Quadro Kanban Real (Painel Admin)
+
+| Backlog                        | A Fazer         | Em Andamento         | Em Revisão   | Concluído      |
+|--------------------------------|-----------------|----------------------|--------------|---------------|
+| Estruturar base painel admin   |                 | Model de permissões  |              |               |
+| Definir níveis de permissão    |                 |                      |              |               |
+| Cadastro de administradores    |                 |                      |              |               |
+| Documentar fluxo de permissões |                 |                      |              |               |
+
+---
 
 ---
 

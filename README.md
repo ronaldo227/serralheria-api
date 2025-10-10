@@ -78,7 +78,9 @@ serralheria-api/
 
 ---
 
+
 ## Domínios
+- Painel Administrativo: Gestão de permissões, colaboradores e configurações do sistema.
 - Clientes: Gerenciamento de informações dos clientes.
 - Orçamentos: Controle e emissão de orçamentos personalizados.
 - Pedidos: Gestão dos pedidos realizados.
@@ -92,6 +94,37 @@ serralheria-api/
 - Relatórios: Geração de relatórios gerenciais e operacionais.
 - Usuários: Gerenciamento de usuários do sistema.
 - Permissões: Controle de acesso e permissões dos usuários.
+
+---
+
+## Ciclos Evolutivos
+O projeto segue ciclos evolutivos documentados em [`CICLOS_EVOLUCIONARIOS.md`](./CICLOS_EVOLUCIONARIOS.md).
+
+---
+
+## Gestão Ágil e Kanban
+Utilize o quadro Kanban para acompanhar o progresso das tarefas. Veja sugestões e exemplos em [`FLUXO_SCRUM_KANBAN.md`](./FLUXO_SCRUM_KANBAN.md).
+
+---
+
+## Roadmap
+- [x] Estrutura base do projeto
+- [x] Documentação inicial
+- [ ] Painel administrativo (em andamento)
+- [ ] Permissões e controle de acesso
+- [ ] Domínios operacionais (clientes, pedidos, etc)
+- [ ] Testes automatizados
+- [ ] Deploy e monitoramento
+
+---
+
+## Como contribuir
+Contribuições são bem-vindas! Para colaborar, solicite acesso ao painel administrativo e siga as diretrizes do projeto.
+
+---
+
+## Licença
+Consulte [`LICENSE.txt`](./LICENSE.txt) e [`LICENCA_ANALISE.txt`](./LICENCA_ANALISE.txt) para detalhes sobre uso e restrições.
 
 ---
 
