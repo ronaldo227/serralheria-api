@@ -1,0 +1,19 @@
+# Ignora arquivos e pastas sensíveis ou restritos
+.env
+*.env
+node_modules/
+dist/
+build/
+prisma/.env
+*.sqlite
+*.sqlite3
+*.log
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+coverage/
+# Arquivos de autorização e licenças restritas
+AUTORIZACAO_DE_USO.md
+LICENCA_ANALISE.txt
+LICENSE.txt
