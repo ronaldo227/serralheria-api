@@ -11,7 +11,7 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 |------------|---------------------------|---------------------------|---------------------------|----------------------------|
 | 11/10/2025 | Estruturação do painel admin | Atualização do material de apoio | Detalhamento do ciclo 1, colograma e análise/modelagem de sistemas | Push, documentação profissional e versionamento no GitHub |
 | 12/10/2025 |                           |                           |                           |                            |
-| 16/10/2025 | Início do ciclo de produção |                           |                           |                            |
+| 16/10/2025 | Início do ciclo de produção: painel admin, cadastro de clientes, ajustes no material de apoio | Implementação de rotas e controllers | Testes e documentação | Foco: funcionalidades do painel admin, cadastro/gestão de clientes, versionamento e documentação profissional |
 | 14/10/2025 |                           |                           |                           |                            |
 | 15/10/2025 |                           |                           |                           |                            |
 
