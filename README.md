@@ -150,10 +150,12 @@ Content-Type: application/json
 
 ## Contato
 
+
 Para solicitações de uso, dúvidas ou propostas profissionais:
 
 - 📧 Email: seuemail@exemplo.com
 - 💼 LinkedIn:
+- 📱 WhatsApp: (11) 98321-1422
 
 <!--
 Ou, se preferir, preencha o formulário de solicitação de uso:
