@@ -25,7 +25,7 @@ Este projeto é proprietário. O uso, cópia, modificação ou distribuição s�
 > **Nota:** Baixar o código de um repositório público é tecnicamente possível, mas qualquer uso comercial, modificação ou distribuição sem permissão é proibido e sujeito a providências legais.
 
 
-<!--
+
 ## 📑 Sumário
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Como Executar](#como-executar)
@@ -34,7 +34,7 @@ Este projeto é proprietário. O uso, cópia, modificação ou distribuição s�
 - [Exemplo de Uso](#exemplo-de-uso)
 - [Tecnologias](#tecnologias)
 - [Contato](#contato)
--->
+
 
 
 ## Sobre o Projeto
