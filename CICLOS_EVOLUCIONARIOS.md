@@ -19,6 +19,12 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 
 ---
 
+## Observação sobre Escalabilidade e Microsserviços
+
+> Conforme o sistema evoluir e a demanda aumentar, está previsto o planejamento para migração da arquitetura monolítica para microsserviços. Essa transição permitirá maior escalabilidade, independência de domínios, facilidade de manutenção e implantação contínua. O design atual já considera separação de responsabilidades e modularização para facilitar essa evolução futura.
+
+---
+
 ## Ciclo 1 - 10/10/2025
 - **Objetivo:**
   - Estruturar o Painel Administrativo para gestão de permissões e colaboradores.
