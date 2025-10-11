@@ -9,7 +9,7 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 
 | Data       | Produção 1                | Produção 2                | Produção 3                | Observações                |
 |------------|---------------------------|---------------------------|---------------------------|----------------------------|
-| 11/10/2025 | Estruturação do painel admin | Atualização do material de apoio | Detalhamento do ciclo 1 e colograma | Push e versionamento no GitHub |
+| 11/10/2025 | Estruturação do painel admin | Atualização do material de apoio | Detalhamento do ciclo 1, colograma e análise/modelagem de sistemas | Push, documentação profissional e versionamento no GitHub |
 | 12/10/2025 |                           |                           |                           |                            |
 | 13/10/2025 | Início do ciclo de produção |                           |                           |                            |
 | 14/10/2025 |                           |                           |                           |                            |
