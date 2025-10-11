@@ -30,12 +30,8 @@ model Admin {
 }
 
 model Permissao {
-  id      Int    @id @default(autoincrement())
-  nome    String
   adminId Int
   admin   Admin  @relation(fields: [adminId], references: [id])
-}
-```
 
 ## Roteiro Prático para o Painel Admin
 1. **Planeje as regras de negócio:**
@@ -54,9 +50,6 @@ model Permissao {
 # Material de Apoio: Ciclo de Desenvolvimento com Prisma
 
 ## Passos para o Primeiro Ciclo (MVP ou Funcionalidade Inicial)
-
-### 1. Escolha do Domínio ou Funcionalidade Prioritária
-- Exemplo: cadastro de clientes, pedidos, etc.
 - Escreva as regras de negócio e requisitos desse ciclo.
 
 ### 2. Configure o Prisma
@@ -80,17 +73,13 @@ model Cliente {
 
 > **Atenção:** Este material está em análise e pode ser mudado ou melhorado conforme o projeto evoluir.
 
-- Execute `npx prisma migrate dev --name init` para criar as tabelas no banco.
 - O comando também gera o Prisma Client.
 
-### 5. Implemente o Repository usando Prisma Client
 Exemplo de uso em `src/repositories/ClienteRepository.ts`:
 
-```typescript
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
 
-export default {
+
   async listar() {
     return prisma.cliente.findMany();
   },
@@ -111,29 +100,18 @@ export default {
 - No controller, conecte as rotas ao service, validando e respondendo às requisições.
 
 ### 8. Implemente as Rotas
-- Adicione as rotas REST em `src/routes/clientes.ts` para expor as operações do domínio.
 
 - Use ferramentas como Postman ou Insomnia para testar os endpoints de todos os domínios, incluindo o painel administrativo.
-+
 > **Atenção:** Os exemplos de endpoints e fluxos de teste podem ser mudados ou melhorados em outros ciclos, conforme o projeto evoluir.
-- Use ferramentas como Postman ou Insomnia para testar os endpoints de todos os domínios, incluindo o painel administrativo.
 
 #### Exemplo de modelo de teste para o Painel Admin:
 
-| Método | Endpoint                | Descrição                        | Exemplo de Body/Query         |
-|--------|-------------------------|----------------------------------|-------------------------------|
-| GET    | /painel-adm/admins      | Listar todos os administradores  | -                             |
-| POST   | /painel-adm/admins      | Criar novo admin                 | `{ "nome": "Admin", "email": "admin@email.com", "senha": "123456" }` |
-| POST   | /painel-adm/permissoes  | Atribuir permissão a um admin    | `{ "adminId": 1, "nome": "GERENCIAR_CLIENTES" }` |
-| GET    | /painel-adm/permissoes  | Listar permissões                | -                             |
-
-#### Exemplo de modelo de teste para o endpoint de clientes:
 
 | Método | Endpoint           | Descrição                | Exemplo de Body/Query         |
 |--------|--------------------|--------------------------|-------------------------------|
 | GET    | /clientes          | Listar todos os clientes | -                             |
 | GET    | /clientes/:id      | Buscar cliente por ID    | -                             |
-| POST   | /clientes          | Criar novo cliente       | `{ "nome": "João", "email": "joao@email.com", "telefone": "11999999999" }` |
+| POST   | /clientes          | Criar novo cliente       | `{ "nome": "João", "email": "joao@email.com", "telefone": "(xx) xxxxx-xxxx" }` |
 | PUT    | /clientes/:id      | Atualizar cliente        | `{ "nome": "João Silva" }`  |
 | DELETE | /clientes/:id      | Remover cliente          | -                             |
 
