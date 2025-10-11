@@ -1,3 +1,13 @@
+# Análise e Modelagem de Sistemas
+
+> O projeto adota práticas profissionais de análise e modelagem de sistemas para garantir clareza, rastreabilidade e evolução contínua. Consulte o arquivo `ANALISE_MODELAGEM.md` para requisitos, casos de uso, modelagem de dados, fluxos e wireframes do painel admin e demais domínios.
+
+---
+## Observação sobre Escalabilidade
+
+> O sistema foi planejado para ser modular e escalável. Caso a demanda cresça, está prevista a migração para arquitetura de microsserviços, facilitando manutenção, evolução e implantação contínua.
+
+---
 # Apoio Prático: Painel Administrativo e Permissões
 
 ## Checklist para o Ciclo do Painel Admin
