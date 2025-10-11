@@ -26,13 +26,8 @@ model Admin {
   nome       String
   email      String      @unique
   senha      String
-  permissoes Permissao[]
+  // permissoes Permissao[]  // Descomente se model Permissao existir
 }
-
-model Permissao {
-  adminId Int
-  admin   Admin  @relation(fields: [adminId], references: [id])
-
 ## Roteiro Prático para o Painel Admin
 1. **Planeje as regras de negócio:**
   - Quem pode criar/editar permissões?
@@ -111,7 +106,7 @@ import { PrismaClient } from '@prisma/client';
 |--------|--------------------|--------------------------|-------------------------------|
 | GET    | /clientes          | Listar todos os clientes | -                             |
 | GET    | /clientes/:id      | Buscar cliente por ID    | -                             |
-| POST   | /clientes          | Criar novo cliente       | `{ "nome": "João", "email": "joao@email.com", "telefone": "(xx) xxxxx-xxxx" }` |
+| POST   | /clientes          | Criar novo cliente       | `{ "nome": "Carlos Lima", "email": "carlos.lima@email.com", "telefone": "99999991" }` |
 | PUT    | /clientes/:id      | Atualizar cliente        | `{ "nome": "João Silva" }`  |
 | DELETE | /clientes/:id      | Remover cliente          | -                             |
 
