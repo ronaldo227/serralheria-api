@@ -156,13 +156,13 @@ Use ferramentas como Postman ou Insomnia para testar todos os endpoints, incluin
 
 #### Exemplo de modelo de teste para o Painel Admin (Administradores)
 
-| Método | Endpoint     | Descrição                       | Exemplo de Body/Query                                                                 |
-|:-------|:-------------|:---------------------------------|:--------------------------------------------------------------------------------------|
-| GET    | /admins      | Listar todos os administradores  | Query: `?page=1&limit=10`<br>Resposta: `200 OK`, array de admins                     |
-| GET    | /admins/:id  | Buscar admin por ID              | Parâmetro: `id` na URL<br>Resposta: `200 OK`, admin ou `404 Not Found`            |
-| POST   | /admins      | Criar novo admin                 | Body: `{ "nome": "Maria Admin", "email": "maria@email.com", "senha": "segura123" }`<br>Resposta: `201 Created`, admin criado |
-| PUT    | /admins/:id  | Atualizar admin                  | Body: `{ "nome": "Maria Silva" }`<br>Resposta: `200 OK`, admin atualizado                |
-| DELETE | /admins/:id  | Remover admin                    | Parâmetro: `id` na URL<br>Resposta: `204 No Content`                              |
+| Método | Endpoint             | Descrição                        | Exemplo de Body/Query                                               |
+|--------|----------------------|----------------------------------|---------------------------------------------------------------------|
+| GET    | /admins              | Listar todos os administradores  | Query: ?page=1&limit=10<br>Resposta: 200 OK, array de admins     |
+| GET    | /admins/:id          | Buscar admin por ID              | Parâmetro: id na URL<br>Resposta: 200 OK, admin ou 404 Not Found |
+| POST   | /admins              | Criar novo admin                 | Body: { "nome": "Maria Admin", "email": "maria@email.com", "senha": "segura123" }<br>Resposta: 201 Created, admin criado |
+| PUT    | /admins/:id          | Atualizar admin                  | Body: { "nome": "Maria Silva" }<br>Resposta: 200 OK, admin atualizado |
+| DELETE | /admins/:id          | Remover admin                    | Parâmetro: id na URL<br>Resposta: 204 No Content           |
 
 - Teste cada endpoint com dados reais, diferentes níveis de permissão e verifique as respostas, validações e restrições de acesso.
 
