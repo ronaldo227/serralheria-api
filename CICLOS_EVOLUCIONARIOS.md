@@ -14,7 +14,7 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 | 13/10/2025 | Configuração inicial do Prisma ORM |                           |                           | Preparação do ambiente para integração real com banco. Tempo estimado: 3 horas de produção |
 | 14/10/2025 |                           |                           |                           |                            |
 | 15/10/2025 |                           |                           |                           |                            |
-| 16/10/2025 | Início do ciclo de produção: painel admin, cadastro de clientes, ajustes no material de apoio | Implementação de rotas e controllers | Testes e documentação | Foco: funcionalidades do painel admin, cadastro/gestão de clientes, versionamento e documentação profissional |
+| 16/10/2025 | Início do ciclo de produção: painel admin, cadastro de clientes, ajustes no material de apoio | Implementação de rotas e controllers | Testes e documentação | Foco: funcionalidades do painel admin, cadastro/gestão de clientes, versionamento e documentação profissional. Tempo estimado ideal: 5h; com margem para erros: até 7h |
 
 > Preencha diariamente com os acréscimos, ajustes ou tarefas realizadas. Recomenda-se registrar pelo menos 3 itens por dia para acompanhamento e análise da evolução do projeto.
 
