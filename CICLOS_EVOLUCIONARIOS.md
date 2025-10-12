@@ -8,7 +8,6 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 ## Colograma de Produção Diária
 
 ```text
-| 25/12/2025 | Teste de rolagem horizontal | Linha longa para verificar o comportamento da tabela com muitos dados | Outro campo extenso para simular overflow | Observação: esta linha é apenas para teste de scroll horizontal |
 | Data       | Produção 1                | Produção 2                | Produção 3                | Observações                |
 |------------|---------------------------|---------------------------|---------------------------|----------------------------|
 | 11/10/2025 | Estruturação do painel admin | Atualização do material de apoio | Detalhamento do ciclo 1, colograma e análise/modelagem de sistemas | Push, documentação profissional e versionamento no GitHub |
