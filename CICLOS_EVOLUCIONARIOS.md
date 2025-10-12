@@ -91,4 +91,17 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 
 ---
 
-> Preencha cada ciclo conforme o projeto evolui. Isso facilita o acompanhamento, aprendizado e adaptação contínua.
+
+---
+
+## Visão de Futuro: Análise SaaS
+
+Quando o projeto estiver bem avançado, com múltiplos domínios implementados e arquitetura consolidada, será o momento ideal para realizar uma análise de viabilidade e evolução para o modelo SaaS (Software as a Service).
+
+- Avaliar a separação de dados por cliente (multi-tenancy), escalabilidade e isolamento de recursos.
+- Planejar a gestão de assinaturas, faturamento e onboarding automatizado de novos clientes.
+- Adaptar autenticação, autorização e permissões para múltiplos ambientes e organizações.
+- Garantir monitoramento, segurança e compliance em escala.
+- Documentar requisitos, riscos e oportunidades específicos do modelo SaaS.
+
+Essa análise estratégica permitirá transformar o sistema em uma solução robusta, escalável e pronta para atender múltiplos clientes de forma profissional.
