@@ -97,15 +97,34 @@ erDiagram
 
 ## 4. Modelagem de Processos (Fluxo de Permissões)
 
+
 ```mermaid
 flowchart TD
-  A[Admin logado] --> B{Deseja atribuir permissão?}
+  A[Admin logado] --> B{Deseja atribuir/remover permissão?}
   B -- Sim --> C[Seleciona colaborador]
-  C --> D[Escolhe permissão]
-  D --> E[Atribui permissão]
-  E --> F[Confirmação e registro no histórico]
-  B -- Não --> G[Fim]
+  C --> D{Colaborador existe?}
+  D -- Não --> E1[Erro: Colaborador não encontrado]
+  D -- Sim --> E[Escolhe permissão/role]
+  E --> F{Permissão já atribuída?}
+  F -- Sim --> G1[Erro: Permissão já atribuída]
+  F -- Não --> H[Atribui permissão]
+  H --> I[Registra no histórico]
+  I --> J[Confirmação para admin]
+  B -- Não --> K[Fim]
+
+  %% Fluxo de remoção
+  H -. Remover permissão .-> L{Deseja remover permissão?}
+  L -- Sim --> M[Remove permissão]
+  M --> N[Registra remoção no histórico]
+  N --> O[Confirmação de remoção]
 ```
+
+**Validações e Fluxos Alternativos:**
+- Se o colaborador não existir, retorna erro 404.
+- Se a permissão já estiver atribuída, retorna erro 400.
+- Se tentar remover permissão não existente, retorna erro 400.
+- Toda atribuição/remoção é registrada no histórico.
+- Apenas admins autenticados podem operar.
 
 ## 5. Modelagem de Telas (Wireframe simplificado)
 
