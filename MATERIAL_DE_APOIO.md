@@ -18,7 +18,6 @@
 - [ ] Validação robusta de dados (entrada de todos os endpoints)
 - [ ] Registro de histórico de permissões (atribuição/remoção)
 - [ ] Testes automatizados (unitários e integração)
-- [ ] Documentação automática da API (Swagger/OpenAPI)
 - [ ] Logs e auditoria de eventos críticos
 - [ ] CI/CD (build, testes e deploy automatizados)
 - [ ] Monitoramento de erros e performance
