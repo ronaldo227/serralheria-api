@@ -33,11 +33,40 @@
 ## Exemplo de Modelagem de Permissões (Prisma)
 ```prisma
 model Admin {
-  id         Int         @id @default(autoincrement())
-  nome       String
-  email      String      @unique
-  senha      String
-  // permissoes Permissao[]  // Descomente se model Permissao existir
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  senha    String
+  roles    AdminRole[]
+}
+
+model Role {
+  id          Int           @id @default(autoincrement())
+  nome        String        @unique
+  permissions RolePermission[]
+  admins      AdminRole[]
+}
+
+model Permission {
+  id    Int    @id @default(autoincrement())
+  nome  String @unique
+  roles RolePermission[]
+}
+
+model RolePermission {
+  id           Int         @id @default(autoincrement())
+  roleId       Int
+  permissionId Int
+  role         Role        @relation(fields: [roleId], references: [id])
+  permission   Permission  @relation(fields: [permissionId], references: [id])
+}
+
+model AdminRole {
+  id      Int   @id @default(autoincrement())
+  adminId Int
+  roleId  Int
+  admin   Admin @relation(fields: [adminId], references: [id])
+  role    Role  @relation(fields: [roleId], references: [id])
 }
 ## Roteiro Prático para o Painel Admin
 1. **Planeje as regras de negócio:**
