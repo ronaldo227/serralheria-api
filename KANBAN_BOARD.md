@@ -10,13 +10,12 @@ Use este quadro para organizar e visualizar o fluxo de trabalho do seu projeto.
 
 ## Backlog
 - Criar modelo inicial de Clientes
-- Configurar conexão com banco de dados (Prisma)
 - Implementar endpoint de cadastro de clientes
 - Criar testes automatizados para Clientes
 - Documentar API inicial
 
 ## Em andamento
-- (adicione aqui as tarefas que estão sendo desenvolvidas)
+- Configuração inicial do Prisma ORM (planejada para 13/10/2025)
 
 ## Revisão
 - (adicione aqui as tarefas que estão aguardando revisão/testes)
