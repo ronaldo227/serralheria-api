@@ -30,22 +30,68 @@ Este documento apresenta a análise e modelagem do sistema Serralheria API, segu
 - **UC03:** Colaborador acessa funcionalidade permitida.
 - **UC04:** Admin consulta histórico de permissões.
 
+### Fluxos Alternativos e Respostas de Erro (Admin)
+
+- **UC01 - Fluxo alternativo:**
+    - Se o email informado já estiver cadastrado, o sistema retorna:
+      - Status: 400 Bad Request
+      - Body: `{ "error": "Email já cadastrado." }`
+- **UC02 - Fluxo alternativo:**
+    - Se o colaborador não existir, retorna:
+      - Status: 404 Not Found
+      - Body: `{ "error": "Colaborador não encontrado." }`
+- **UC03 - Fluxo alternativo:**
+    - Se o colaborador tentar acessar funcionalidade sem permissão:
+      - Status: 403 Forbidden
+      - Body: `{ "error": "Permissão insuficiente." }`
+- **UC04 - Fluxo alternativo:**
+    - Se não houver histórico para o admin:
+      - Status: 404 Not Found
+      - Body: `{ "error": "Nenhum histórico encontrado." }`
+
+### Validações e Regras de Negócio (Admin)
+
+- Email deve ser único e válido.
+- Senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.
+- Apenas administradores autenticados podem criar, editar ou remover outros admins.
+- Não é permitido remover o próprio usuário autenticado.
+
 ## 3. Modelagem de Dados (Entidades e Relacionamentos)
+
 
 ```mermaid
 erDiagram
-  ADMIN ||--o{ PERMISSAO : possui
+  ADMIN ||--o{ ADMINROLE : possui
+  ROLE  ||--o{ ADMINROLE : atribuido
+  ROLE  ||--o{ ROLEPERMISSION : tem
+  PERMISSAO ||--o{ ROLEPERMISSION : concedida
+
   ADMIN {
     int id
     string nome
     string email
     string senha
     datetime criadoEm
+    datetime ultimoAcesso
+    string status
+  }
+  ROLE {
+    int id
+    string nome
   }
   PERMISSAO {
     int id
     string nome
+  }
+  ADMINROLE {
+    int id
     int adminId
+    int roleId
+  }
+  ROLEPERMISSION {
+    int id
+    int roleId
+    int permissaoId
   }
 ```
 
