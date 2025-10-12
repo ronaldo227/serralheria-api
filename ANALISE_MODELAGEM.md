@@ -57,6 +57,17 @@ Este documento apresenta a análise e modelagem do sistema Serralheria API, segu
 - Não é permitido remover o próprio usuário autenticado.
 
 ## 3. Modelagem de Dados (Entidades e Relacionamentos)
+### Papéis Organizacionais e Permissões (RBAC)
+
+| Nível | Papel         | Descrição                                                                 | Permissões Principais                                 |
+|-------|---------------|---------------------------------------------------------------------------|------------------------------------------------------|
+| 🏆    | CEO           | Controle total do sistema. Define políticas, acessos e aprovações globais. | FULL_ACCESS (acesso a todos os módulos e permissões) |
+| 💼    | Diretor       | Supervisiona departamentos (Financeiro, Produção, Comercial). Pode criar gerentes e revisar relatórios. | GERENCIAR_DEPARTAMENTO, APROVAR_ORCAMENTOS, VISUALIZAR_RELATORIOS |
+| 🧠    | Gerente       | Coordena operações do setor e supervisiona equipes.                        | GERENCIAR_EQUIPE, CONTROLAR_PEDIDOS, CONTROLAR_ESTOQUE |
+| 🧰    | Encarregado   | Supervisiona execução de tarefas e controle de materiais.                  | GERENCIAR_COLABORADORES, ATUALIZAR_STATUS, VISUALIZAR_MATERIAIS |
+| 👷    | Colaborador   | Executa tarefas operacionais com acesso restrito ao seu escopo.            | -                                                    |
+
+> As permissões podem ser expandidas conforme a evolução do sistema. Cada papel pode agregar múltiplas permissões, e a hierarquia permite delegação e controle granular.
 
 
 ```mermaid
