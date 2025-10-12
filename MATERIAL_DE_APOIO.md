@@ -17,7 +17,18 @@
 - [ ] Implementar rotas base no painel (`src/routes/painelAdm.ts`)
 - [ ] Criar controllers e services para admins e permissões
 - [ ] Planejar níveis de acesso (ex: admin, gerente, colaborador)
+
 - [ ] Documentar fluxo de permissões e exemplos de uso
+
+### Níveis do Painel Administrativo
+
+| Nível         | Descrição                                                                 | Escopo / Permissões Típicas                                      |
+|--------------|---------------------------------------------------------------------------|-------------------------------------------------------------------|
+| 🏆 CEO        | Controle total do sistema. Define políticas, acessos e aprovações globais. | Acesso a todos os módulos e permissões (FULL_ACCESS)              |
+| 💼 Diretor    | Supervisiona departamentos (Financeiro, Produção, Comercial). Pode criar gerentes e revisar relatórios. | GERENCIAR_DEPARTAMENTO, APROVAR_ORCAMENTOS, VISUALIZAR_RELATORIOS |
+| 🧠 Gerente    | Coordena operações do setor e supervisiona equipes.                        | GERENCIAR_EQUIPE, CONTROLAR_PEDIDOS, CONTROLAR_ESTOQUE            |
+| 🧰 Encarregado| Supervisiona execução de tarefas e controle de materiais.                  | GERENCIAR_COLABORADORES, ATUALIZAR_STATUS, VISUALIZAR_MATERIAIS   |
+| 👷 Colaborador| Executa tarefas operacionais com acesso restrito ao seu escopo.            | -                                                                 |
 
 ## Exemplo de Modelagem de Permissões (Prisma)
 ```prisma
