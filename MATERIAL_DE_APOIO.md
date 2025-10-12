@@ -129,26 +129,40 @@ import { PrismaClient } from '@prisma/client';
 ```
 
 ### 6. Implemente o Service
-- No service, coloque as regras de negócio e chame o repository.
+No service:
+- Implemente as regras de negócio (validações, cálculos, lógica de autorização, etc.).
+- Realize validações de dados antes de chamar o repository.
+- Centralize o tratamento de exceções e mensagens de erro.
+- Chame o repository apenas após garantir que os dados estão corretos.
+- Retorne objetos claros e padronizados para o controller.
 
 ### 7. Implemente o Controller
-- No controller, conecte as rotas ao service, validando e respondendo às requisições.
+No controller:
+- Receba e valide os dados das requisições (body, params, query).
+- Chame os métodos do service para executar as operações de negócio.
+- Trate erros e envie respostas HTTP padronizadas (status, mensagens, payload).
+- Nunca implemente lógica de negócio no controller, apenas orquestre as chamadas.
 
 ### 8. Implemente as Rotas
+Nas rotas:
+- Defina endpoints RESTful claros e semânticos.
+- Utilize middlewares para autenticação, autorização e validação de dados.
+- Mantenha as rotas organizadas por domínio (ex: clientes, painel admin, pedidos).
+- Documente cada rota com exemplos de request/response.
 
-- Use ferramentas como Postman ou Insomnia para testar os endpoints de todos os domínios, incluindo o painel administrativo.
+Use ferramentas como Postman ou Insomnia para testar todos os endpoints, incluindo o painel administrativo.
 > **Atenção:** Os exemplos de endpoints e fluxos de teste podem ser mudados ou melhorados em outros ciclos, conforme o projeto evoluir.
 
-#### Exemplo de modelo de teste para o Painel Admin:
 
+#### Exemplo de modelo de teste para o Painel Admin (Administradores)
 
-| Método | Endpoint           | Descrição                | Exemplo de Body/Query         |
-|--------|--------------------|--------------------------|-------------------------------|
-| GET    | /clientes          | Listar todos os clientes | -                             |
-| GET    | /clientes/:id      | Buscar cliente por ID    | -                             |
-| POST   | /clientes          | Criar novo cliente       | `{ "nome": "Carlos Lima", "email": "carlos.lima@email.com", "telefone": "99999991" }` |
-| PUT    | /clientes/:id      | Atualizar cliente        | `{ "nome": "João Silva" }`  |
-| DELETE | /clientes/:id      | Remover cliente          | -                             |
+| Método | Endpoint             | Descrição                        | Exemplo de Body/Query                                               |
+|--------|----------------------|----------------------------------|---------------------------------------------------------------------|
+| GET    | /admins              | Listar todos os administradores  | Query: `?page=1&limit=10`<br>Resposta: 200 OK, array de admins     |
+| GET    | /admins/:id          | Buscar admin por ID              | Parâmetro: `id` na URL<br>Resposta: 200 OK, admin ou 404 Not Found |
+| POST   | /admins              | Criar novo admin                 | Body: `{ "nome": "Maria Admin", "email": "maria@email.com", "senha": "segura123" }`<br>Resposta: 201 Created, admin criado |
+| PUT    | /admins/:id          | Atualizar admin                  | Body: `{ "nome": "Maria Silva" }`<br>Resposta: 200 OK, admin atualizado |
+| DELETE | /admins/:id          | Remover admin                    | Parâmetro: `id` na URL<br>Resposta: 204 No Content           |
 
 - Teste cada endpoint com dados reais, diferentes níveis de permissão e verifique as respostas, validações e restrições de acesso.
 
