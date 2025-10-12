@@ -85,37 +85,43 @@ Este documento apresenta a análise e modelagem do sistema Serralheria API, segu
 
 ```mermaid
 erDiagram
-  ADMIN ||--o{ ADMINROLE : possui
-  ROLE  ||--o{ ADMINROLE : atribuido
-  ROLE  ||--o{ ROLEPERMISSION : tem
-  PERMISSAO ||--o{ ROLEPERMISSION : concedida
+  %% Relações principais do RBAC
+  ADMIN ||--o{ ADMINROLE : "possui"
+  ROLE  ||--o{ ADMINROLE : "atribuído a"
+  ROLE  ||--o{ ROLEPERMISSION : "tem"
+  PERMISSAO ||--o{ ROLEPERMISSION : "concedida a"
 
+  %% Entidades
   ADMIN {
-    int id
-    string nome
-    string email
-    string senha
-    datetime criadoEm
-    datetime ultimoAcesso
-    string status
+    int id PK "Identificador único"
+    string nome "Nome completo"
+    string email "E-mail (único)"
+    string senha "Hash da senha"
+    datetime criadoEm "Data de criação"
+    datetime ultimoAcesso "Último login"
+    string status "Ativo/Inativo"
   }
   ROLE {
-    int id
-    string nome
+    int id PK "Identificador único"
+    string nome "Nome do papel (ex: CEO, Diretor)"
+    string descricao "Descrição do papel"
   }
   PERMISSAO {
-    int id
-    string nome
+    int id PK "Identificador único"
+    string nome "Nome da permissão (ex: GERENCIAR_EQUIPE)"
+    string descricao "Descrição da permissão"
   }
   ADMINROLE {
-    int id
-    int adminId
-    int roleId
+    int id PK
+    int adminId FK
+    int roleId FK
+    datetime atribuidoEm "Data de atribuição"
   }
   ROLEPERMISSION {
-    int id
-    int roleId
-    int permissaoId
+    int id PK
+    int roleId FK
+    int permissaoId FK
+    datetime concedidoEm "Data de concessão"
   }
 ```
 
