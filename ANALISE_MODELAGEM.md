@@ -59,13 +59,26 @@ Este documento apresenta a análise e modelagem do sistema Serralheria API, segu
 ## 3. Modelagem de Dados (Entidades e Relacionamentos)
 ### Papéis Organizacionais e Permissões (RBAC)
 
-| Nível | Papel         | Descrição                                                                 | Permissões Principais                                 |
-|-------|---------------|---------------------------------------------------------------------------|------------------------------------------------------|
-| 🏆    | CEO           | Controle total do sistema. Define políticas, acessos e aprovações globais. | FULL_ACCESS (acesso a todos os módulos e permissões) |
-| 💼    | Diretor       | Supervisiona departamentos (Financeiro, Produção, Comercial). Pode criar gerentes e revisar relatórios. | GERENCIAR_DEPARTAMENTO, APROVAR_ORCAMENTOS, VISUALIZAR_RELATORIOS |
-| 🧠    | Gerente       | Coordena operações do setor e supervisiona equipes.                        | GERENCIAR_EQUIPE, CONTROLAR_PEDIDOS, CONTROLAR_ESTOQUE |
-| 🧰    | Encarregado   | Supervisiona execução de tarefas e controle de materiais.                  | GERENCIAR_COLABORADORES, ATUALIZAR_STATUS, VISUALIZAR_MATERIAIS |
-| 👷    | Colaborador   | Executa tarefas operacionais com acesso restrito ao seu escopo.            | -                                                    |
+
+| Nível | Papel         | Descrição                                                                 | Permissões Específicas |
+|-------|---------------|---------------------------------------------------------------------------|-----------------------|
+| 🏆    | CEO           | Controle total do sistema. Define políticas, acessos e aprovações globais. | - FULL_ACCESS<br>- GERENCIAR_DEPARTAMENTO<br>- APROVAR_ORCAMENTOS<br>- VISUALIZAR_RELATORIOS<br>- GERENCIAR_EQUIPE<br>- CONTROLAR_PEDIDOS<br>- CONTROLAR_ESTOQUE<br>- GERENCIAR_COLABORADORES<br>- ATUALIZAR_STATUS<br>- VISUALIZAR_MATERIAIS |
+| 💼    | Diretor       | Supervisiona departamentos (Financeiro, Produção, Comercial). Pode criar gerentes e revisar relatórios. | - GERENCIAR_DEPARTAMENTO<br>- APROVAR_ORCAMENTOS<br>- VISUALIZAR_RELATORIOS |
+| 🧠    | Gerente       | Coordena operações do setor e supervisiona equipes.                        | - GERENCIAR_EQUIPE<br>- CONTROLAR_PEDIDOS<br>- CONTROLAR_ESTOQUE |
+| 🧰    | Encarregado   | Supervisiona execução de tarefas e controle de materiais.                  | - GERENCIAR_COLABORADORES<br>- ATUALIZAR_STATUS<br>- VISUALIZAR_MATERIAIS |
+| 👷    | Colaborador   | Executa tarefas operacionais com acesso restrito ao seu escopo.            | - VISUALIZAR_MATERIAIS |
+
+**Permissões detalhadas:**
+- `FULL_ACCESS`: Acesso irrestrito a todos os módulos e operações do sistema.
+- `GERENCIAR_DEPARTAMENTO`: Criar, editar e remover departamentos; gerenciar responsáveis.
+- `APROVAR_ORCAMENTOS`: Aprovar, rejeitar e revisar orçamentos.
+- `VISUALIZAR_RELATORIOS`: Acessar relatórios gerenciais e operacionais.
+- `GERENCIAR_EQUIPE`: Adicionar/remover membros, definir metas e supervisionar atividades.
+- `CONTROLAR_PEDIDOS`: Criar, editar, aprovar e acompanhar pedidos.
+- `CONTROLAR_ESTOQUE`: Gerenciar entradas, saídas e inventário de materiais.
+- `GERENCIAR_COLABORADORES`: Cadastrar, editar e supervisionar colaboradores.
+- `ATUALIZAR_STATUS`: Atualizar status de tarefas, pedidos e processos.
+- `VISUALIZAR_MATERIAIS`: Consultar materiais disponíveis e seus detalhes.
 
 > As permissões podem ser expandidas conforme a evolução do sistema. Cada papel pode agregar múltiplas permissões, e a hierarquia permite delegação e controle granular.
 
