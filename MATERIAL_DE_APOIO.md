@@ -156,13 +156,19 @@ Use ferramentas como Postman ou Insomnia para testar todos os endpoints, incluin
 
 #### Exemplo de modelo de teste para o Painel Admin (Administradores)
 
-| Método | Endpoint             | Descrição                        | Exemplo de Body/Query                                               |
+| Método | Endpoint             | Descrição                        | Exemplo de Body/Query e Respostas                                    |
 |--------|----------------------|----------------------------------|---------------------------------------------------------------------|
 | GET    | /admins              | Listar todos os administradores  | Query: ?page=1&limit=10<br>Resposta: 200 OK, array de admins     |
-| GET    | /admins/:id          | Buscar admin por ID              | Parâmetro: id na URL<br>Resposta: 200 OK, admin ou 404 Not Found |
-| POST   | /admins              | Criar novo admin                 | Body: { "nome": "Maria Admin", "email": "maria@email.com", "senha": "segura123" }<br>Resposta: 201 Created, admin criado |
-| PUT    | /admins/:id          | Atualizar admin                  | Body: { "nome": "Maria Silva" }<br>Resposta: 200 OK, admin atualizado |
-| DELETE | /admins/:id          | Remover admin                    | Parâmetro: id na URL<br>Resposta: 204 No Content           |
+| GET    | /admins/:id          | Buscar admin por ID              | Parâmetro: id na URL<br>Resposta: 200 OK, admin<br>Erro: 404 Not Found se não existir |
+| POST   | /admins              | Criar novo admin                 | Body: { "nome": "Maria Admin", "email": "maria@email.com", "senha": "segura123" }<br>Resposta: 201 Created, admin criado<br>Erro: 400 Bad Request se email já cadastrado |
+| PUT    | /admins/:id          | Atualizar admin                  | Body: { "nome": "Maria Silva" }<br>Resposta: 200 OK, admin atualizado<br>Erro: 404 Not Found se id não existir |
+| DELETE | /admins/:id          | Remover admin                    | Parâmetro: id na URL<br>Resposta: 204 No Content<br>Erro: 404 Not Found se id não existir |
+
+**Exemplos de respostas de erro:**
+
+- 400 Bad Request: { "error": "Email já cadastrado." }
+- 404 Not Found: { "error": "Administrador não encontrado." }
+- 401 Unauthorized: { "error": "Token inválido ou ausente." }
 
 - Teste cada endpoint com dados reais, diferentes níveis de permissão e verifique as respostas, validações e restrições de acesso.
 
