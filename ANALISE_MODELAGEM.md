@@ -128,26 +128,41 @@ erDiagram
 ## 4. Modelagem de Processos (Fluxo de Permissões)
 
 
+
 ```mermaid
 flowchart TD
-  A[Admin logado] --> B{Deseja atribuir/remover permissão?}
-  B -- Sim --> C[Seleciona colaborador]
+  A[Admin autenticado] --> B{Ação desejada?}
+  B -- "Atribuir permissão" --> C[Seleciona colaborador]
+  B -- "Remover permissão" --> C2[Seleciona colaborador]
+  B -- "Nenhuma" --> Z[Fim]
+
+  %% Fluxo de atribuição
   C --> D{Colaborador existe?}
   D -- Não --> E1[Erro: Colaborador não encontrado]
   D -- Sim --> E[Escolhe permissão/role]
   E --> F{Permissão já atribuída?}
   F -- Sim --> G1[Erro: Permissão já atribuída]
   F -- Não --> H[Atribui permissão]
-  H --> I[Registra no histórico]
+  H --> I[Registra atribuição no histórico]
   I --> J[Confirmação para admin]
-  B -- Não --> K[Fim]
 
   %% Fluxo de remoção
-  H -. Remover permissão .-> L{Deseja remover permissão?}
-  L -- Sim --> M[Remove permissão]
-  M --> N[Registra remoção no histórico]
-  N --> O[Confirmação de remoção]
+  C2 --> D2{Colaborador existe?}
+  D2 -- Não --> E2[Erro: Colaborador não encontrado]
+  D2 -- Sim --> E3[Escolhe permissão/role]
+  E3 --> F2{Permissão está atribuída?}
+  F2 -- Não --> G2[Erro: Permissão não atribuída]
+  F2 -- Sim --> H2[Remove permissão]
+  H2 --> I2[Registra remoção no histórico]
+  I2 --> J2[Confirmação de remoção]
 ```
+
+**Validações e Fluxos Alternativos:**
+- Se o colaborador não existir, retorna erro 404.
+- Se a permissão já estiver atribuída (ao atribuir), retorna erro 400.
+- Se a permissão não estiver atribuída (ao remover), retorna erro 400.
+- Toda atribuição/remoção é registrada no histórico.
+- Apenas admins autenticados podem operar.
 
 **Validações e Fluxos Alternativos:**
 - Se o colaborador não existir, retorna erro 404.
