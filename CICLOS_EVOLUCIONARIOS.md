@@ -30,6 +30,16 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 **Objetivo:**
   - Estruturar o Painel Administrativo para gestão de administradores, permissões e colaboradores.
 
+**Níveis do Painel Administrativo**
+
+| Nível         | Descrição                                                                 | Escopo / Permissões Típicas                                      |
+|--------------|---------------------------------------------------------------------------|-------------------------------------------------------------------|
+| 🏆 CEO        | Controle total do sistema. Define políticas, acessos e aprovações globais. | Acesso a todos os módulos e permissões (FULL_ACCESS)              |
+| 💼 Diretor    | Supervisiona departamentos (Financeiro, Produção, Comercial). Pode criar gerentes e revisar relatórios. | GERENCIAR_DEPARTAMENTO, APROVAR_ORCAMENTOS, VISUALIZAR_RELATORIOS |
+| 🧠 Gerente    | Coordena operações do setor e supervisiona equipes.                        | GERENCIAR_EQUIPE, CONTROLAR_PEDIDOS, CONTROLAR_ESTOQUE            |
+| 🧰 Encarregado| Supervisiona execução de tarefas e controle de materiais.                  | GERENCIAR_COLABORADORES, ATUALIZAR_STATUS, VISUALIZAR_MATERIAIS   |
+| 👷 Colaborador| Executa tarefas operacionais com acesso restrito ao seu escopo.            | -                                                                 |
+
 - **Requisitos:**
   - Cadastro de administradores:
     - Permitir criar, editar, listar e remover administradores.
