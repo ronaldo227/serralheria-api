@@ -37,27 +37,35 @@
 | 👷 Colaborador| Executa tarefas operacionais com acesso restrito ao seu escopo.            | -                                                                 |
 
 ## Exemplo de Modelagem de Permissões (Prisma)
+### Modelagem Profunda de Permissões e RBAC (Prisma)
 ```prisma
 model Admin {
-  id       Int      @id @default(autoincrement())
-  nome     String
-  email    String   @unique
-  senha    String
-  roles    AdminRole[]
+  id         Int         @id @default(autoincrement())
+  nome       String
+  email      String      @unique
+  senha      String
+  criadoEm   DateTime    @default(now())
+  ultimoAcesso DateTime?
+  ativo      Boolean     @default(true)
+  roles      AdminRole[]
+  historicoPermissoes HistoricoPermissao[]
 }
 
 model Role {
   id          Int           @id @default(autoincrement())
   nome        String        @unique
+  descricao   String?
   permissions RolePermission[]
   admins      AdminRole[]
+  dominio     String?       // Ex: "painel_admin", "clientes", "pedidos"
 }
 
 model Permission {
-  id    Int    @id @default(autoincrement())
-  nome  String @unique
-
-  roles RolePermission[]
+  id          Int           @id @default(autoincrement())
+  nome        String        @unique
+  descricao   String?
+  dominio     String?       // Permite granularidade por domínio
+  roles       RolePermission[]
 }
 
 model RolePermission {
@@ -74,7 +82,30 @@ model AdminRole {
   roleId  Int
   admin   Admin @relation(fields: [adminId], references: [id])
   role    Role  @relation(fields: [roleId], references: [id])
+  atribuidoEm DateTime @default(now())
 }
+
+/// Histórico de atribuição e remoção de permissões para auditoria e rastreabilidade
+model HistoricoPermissao {
+  id           Int       @id @default(autoincrement())
+  adminId      Int
+  roleId       Int?
+  permissionId Int?
+  acao         String    // "ATRIBUICAO" ou "REMOCAO"
+  data         DateTime  @default(now())
+  admin        Admin     @relation(fields: [adminId], references: [id])
+  role         Role?     @relation(fields: [roleId], references: [id])
+  permission   Permission? @relation(fields: [permissionId], references: [id])
+  observacao   String?
+}
+```
+
+**Diferenciais desta modelagem:**
+- Suporte a múltiplos domínios (painel admin, clientes, pedidos, etc.)
+- Permissões e roles com descrição e domínio para granularidade e escalabilidade
+- Histórico de atribuição/remoção para auditoria e rastreabilidade
+- Campos de status, datas e observações para governança
+- Pronto para RBAC avançado, multi-admin, multi-domínio e futuras integrações SaaS
 ## Roteiro Prático para o Painel Admin
 1. **Planeje as regras de negócio:**
   - Quem pode criar/editar permissões?
