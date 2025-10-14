@@ -94,6 +94,7 @@ Este documento detalha a análise e modelagem do sistema Serralheria API, com fo
 
 
 
+
 ```mermaid
 erDiagram
   %% RBAC Avançado — Estrutura relacional
@@ -133,6 +134,54 @@ erDiagram
     int permissaoId FK
     datetime concedidoEm
   }
+```
+
+#### Exemplo de Modelagem Prisma (prático)
+
+```prisma
+model Admin {
+  id            Int           @id @default(autoincrement())
+  nome          String
+  email         String        @unique
+  senha         String
+  criadoEm      DateTime      @default(now())
+  ultimoAcesso  DateTime?
+  status        String
+  roles         AdminRole[]
+}
+
+model Role {
+  id          Int             @id @default(autoincrement())
+  nome        String          @unique
+  descricao   String?
+  admins      AdminRole[]
+  permissoes  RolePermission[]
+}
+
+model Permissao {
+  id          Int             @id @default(autoincrement())
+  nome        String          @unique
+  descricao   String?
+  roles       RolePermission[]
+}
+
+model AdminRole {
+  id         Int       @id @default(autoincrement())
+  admin      Admin     @relation(fields: [adminId], references: [id])
+  adminId    Int
+  role       Role      @relation(fields: [roleId], references: [id])
+  roleId     Int
+  atribuidoEm DateTime @default(now())
+}
+
+model RolePermission {
+  id           Int         @id @default(autoincrement())
+  role         Role        @relation(fields: [roleId], references: [id])
+  roleId       Int
+  permissao    Permissao   @relation(fields: [permissaoId], references: [id])
+  permissaoId  Int
+  concedidoEm  DateTime    @default(now())
+}
 ```
 
 
