@@ -1,34 +1,41 @@
 
-# Análise e Modelagem de Sistemas
 
-Este documento apresenta a análise e modelagem do sistema Serralheria API, seguindo práticas profissionais de Engenharia de Software. O objetivo é garantir clareza, rastreabilidade e alinhamento entre requisitos, regras de negócio, estrutura de dados e fluxos do sistema.
+# Análise e Modelagem de Sistemas — Serralheria API
+
+Este documento detalha a análise e modelagem do sistema Serralheria API, com foco em práticas profissionais de Engenharia de Software, rastreabilidade, versionamento e integração real com o Prisma ORM. O objetivo é garantir que requisitos, regras de negócio, estrutura de dados e fluxos estejam totalmente alinhados à implementação, facilitando manutenção, auditoria e evolução do sistema.
 
 ---
 
+
 ## 1. Levantamento e Especificação de Requisitos
 
+
 ### 1.1 Requisitos Funcionais
-- O sistema deve permitir o cadastro, edição, remoção e listagem de administradores.
-- O sistema deve possibilitar a definição e atribuição de permissões (roles) para cada usuário.
-- O sistema deve controlar o acesso a domínios como clientes, pedidos, relatórios, etc.
-- O sistema deve registrar o histórico de alterações de permissões.
+- Cadastro, edição, remoção e listagem de administradores.
+- Definição e atribuição de papéis (roles) e permissões para cada usuário.
+- Controle de acesso a múltiplos domínios (clientes, pedidos, relatórios, etc.).
+- Registro e rastreabilidade do histórico de alterações de permissões (auditoria).
+
 
 ### 1.2 Requisitos Não Funcionais
 - Segurança: criptografia de senhas, autenticação JWT, proteção de endpoints sensíveis.
 - Usabilidade: interfaces intuitivas e responsivas para o painel administrativo.
-- Escalabilidade: arquitetura modular para suportar novos domínios e permissões.
+- Escalabilidade: arquitetura modular e modelo RBAC expansível para novos domínios/permissões.
+
 
 ### 1.3 Restrições e Premissas
-- O sistema será desenvolvido em Node.js, TypeScript e Express.
-- O banco de dados será relacional, gerenciado via Prisma ORM.
+- Stack: Node.js, TypeScript, Express.
+- Banco de dados relacional, gerenciado via Prisma ORM.
 
 ---
 
+
 ## 2. Casos de Uso (Exemplos)
 - **UC01:** Admin cadastra novo colaborador.
-- **UC02:** Admin atribui/remover permissão de um colaborador.
+- **UC02:** Admin atribui/remove permissão de um colaborador.
 - **UC03:** Colaborador acessa funcionalidade permitida.
 - **UC04:** Admin consulta histórico de permissões.
+
 
 ### Fluxos Alternativos e Respostas de Erro (Admin)
 
@@ -49,83 +56,88 @@ Este documento apresenta a análise e modelagem do sistema Serralheria API, segu
       - Status: 404 Not Found
       - Body: `{ "error": "Nenhum histórico encontrado." }`
 
-### Validações e Regras de Negócio (Admin)
 
-- Email deve ser único e válido.
-- Senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.
-- Apenas administradores autenticados podem criar, editar ou remover outros admins.
+### Validações e Regras de Negócio (Admin)
+- Email único e válido.
+- Senha forte (mín. 8 caracteres, maiúscula, minúscula, número).
+- Apenas admins autenticados podem criar, editar ou remover outros admins.
 - Não é permitido remover o próprio usuário autenticado.
 
+
 ## 3. Modelagem de Dados (Entidades e Relacionamentos)
-### Papéis Organizacionais e Permissões (RBAC)
+### Papéis Organizacionais e Permissões (RBAC Avançado)
 
 
-| Nível | Papel         | Descrição                                                                 | Permissões Específicas |
-|-------|---------------|---------------------------------------------------------------------------|-----------------------|
-| 🏆    | CEO           | Controle total do sistema. Define políticas, acessos e aprovações globais. | - FULL_ACCESS<br>- GERENCIAR_DEPARTAMENTO<br>- APROVAR_ORCAMENTOS<br>- VISUALIZAR_RELATORIOS<br>- GERENCIAR_EQUIPE<br>- CONTROLAR_PEDIDOS<br>- CONTROLAR_ESTOQUE<br>- GERENCIAR_COLABORADORES<br>- ATUALIZAR_STATUS<br>- VISUALIZAR_MATERIAIS |
-| 💼    | Diretor       | Supervisiona departamentos (Financeiro, Produção, Comercial). Pode criar gerentes e revisar relatórios. | - GERENCIAR_DEPARTAMENTO<br>- APROVAR_ORCAMENTOS<br>- VISUALIZAR_RELATORIOS |
-| 🧠    | Gerente       | Coordena operações do setor e supervisiona equipes.                        | - GERENCIAR_EQUIPE<br>- CONTROLAR_PEDIDOS<br>- CONTROLAR_ESTOQUE |
-| 🧰    | Encarregado   | Supervisiona execução de tarefas e controle de materiais.                  | - GERENCIAR_COLABORADORES<br>- ATUALIZAR_STATUS<br>- VISUALIZAR_MATERIAIS |
-| 👷    | Colaborador   | Executa tarefas operacionais com acesso restrito ao seu escopo.            | - VISUALIZAR_MATERIAIS |
+
+| Nível | Papel         | Permissões-Chave |
+|-------|---------------|-----------------|
+| 🏆    | CEO           | FULL_ACCESS, GERENCIAR_DEPARTAMENTO, APROVAR_ORCAMENTOS, VISUALIZAR_RELATORIOS, GERENCIAR_EQUIPE, CONTROLAR_PEDIDOS, CONTROLAR_ESTOQUE, GERENCIAR_COLABORADORES, ATUALIZAR_STATUS, VISUALIZAR_MATERIAIS |
+| 💼    | Diretor       | GERENCIAR_DEPARTAMENTO, APROVAR_ORCAMENTOS, VISUALIZAR_RELATORIOS |
+| 🧠    | Gerente       | GERENCIAR_EQUIPE, CONTROLAR_PEDIDOS, CONTROLAR_ESTOQUE |
+| 🧰    | Encarregado   | GERENCIAR_COLABORADORES, ATUALIZAR_STATUS, VISUALIZAR_MATERIAIS |
+| 👷    | Colaborador   | VISUALIZAR_MATERIAIS |
+
 
 **Permissões detalhadas:**
-- `FULL_ACCESS`: Acesso irrestrito a todos os módulos e operações do sistema.
-- `GERENCIAR_DEPARTAMENTO`: Criar, editar e remover departamentos; gerenciar responsáveis.
-- `APROVAR_ORCAMENTOS`: Aprovar, rejeitar e revisar orçamentos.
-- `VISUALIZAR_RELATORIOS`: Acessar relatórios gerenciais e operacionais.
-- `GERENCIAR_EQUIPE`: Adicionar/remover membros, definir metas e supervisionar atividades.
-- `CONTROLAR_PEDIDOS`: Criar, editar, aprovar e acompanhar pedidos.
-- `CONTROLAR_ESTOQUE`: Gerenciar entradas, saídas e inventário de materiais.
-- `GERENCIAR_COLABORADORES`: Cadastrar, editar e supervisionar colaboradores.
-- `ATUALIZAR_STATUS`: Atualizar status de tarefas, pedidos e processos.
-- `VISUALIZAR_MATERIAIS`: Consultar materiais disponíveis e seus detalhes.
+- `FULL_ACCESS`: Acesso total ao sistema.
+- `GERENCIAR_DEPARTAMENTO`: Gerenciar departamentos e responsáveis.
+- `APROVAR_ORCAMENTOS`: Aprovar/rejeitar orçamentos.
+- `VISUALIZAR_RELATORIOS`: Acessar relatórios gerenciais.
+- `GERENCIAR_EQUIPE`: Supervisionar equipes e metas.
+- `CONTROLAR_PEDIDOS`: Gerenciar pedidos.
+- `CONTROLAR_ESTOQUE`: Gerenciar estoque de materiais.
+- `GERENCIAR_COLABORADORES`: Supervisionar colaboradores.
+- `ATUALIZAR_STATUS`: Atualizar status de processos.
+- `VISUALIZAR_MATERIAIS`: Consultar materiais.
 
-> As permissões podem ser expandidas conforme a evolução do sistema. Cada papel pode agregar múltiplas permissões, e a hierarquia permite delegação e controle granular.
+> O modelo RBAC é expansível e auditável, permitindo delegação e controle granular. Toda atribuição/remoção é registrada para rastreabilidade.
+
 
 
 ```mermaid
 erDiagram
-  %% Relações principais do RBAC
+  %% RBAC Avançado — Estrutura relacional
   ADMIN ||--o{ ADMINROLE : "possui"
   ROLE  ||--o{ ADMINROLE : "atribuído a"
   ROLE  ||--o{ ROLEPERMISSION : "tem"
   PERMISSAO ||--o{ ROLEPERMISSION : "concedida a"
 
-  %% Entidades
   ADMIN {
-    int id PK "Identificador único"
-    string nome "Nome completo"
-    string email "E-mail (único)"
-    string senha "Hash da senha"
-    datetime criadoEm "Data de criação"
-    datetime ultimoAcesso "Último login"
-    string status "Ativo/Inativo"
+    int id PK
+    string nome
+    string email
+    string senha
+    datetime criadoEm
+    datetime ultimoAcesso
+    string status
   }
   ROLE {
-    int id PK "Identificador único"
-    string nome "Nome do papel (ex: CEO, Diretor)"
-    string descricao "Descrição do papel"
+    int id PK
+    string nome
+    string descricao
   }
   PERMISSAO {
-    int id PK "Identificador único"
-    string nome "Nome da permissão (ex: GERENCIAR_EQUIPE)"
-    string descricao "Descrição da permissão"
+    int id PK
+    string nome
+    string descricao
   }
   ADMINROLE {
     int id PK
     int adminId FK
     int roleId FK
-    datetime atribuidoEm "Data de atribuição"
+    datetime atribuidoEm
   }
   ROLEPERMISSION {
     int id PK
     int roleId FK
     int permissaoId FK
-    datetime concedidoEm "Data de concessão"
+    datetime concedidoEm
   }
 ```
 
+
 ## 4. Modelagem de Processos (Fluxo de Permissões)
+
 
 
 
@@ -157,31 +169,29 @@ flowchart TD
   I2 --> J2[Confirmação de remoção]
 ```
 
-**Validações e Fluxos Alternativos:**
-- Se o colaborador não existir, retorna erro 404.
-- Se a permissão já estiver atribuída (ao atribuir), retorna erro 400.
-- Se a permissão não estiver atribuída (ao remover), retorna erro 400.
-- Toda atribuição/remoção é registrada no histórico.
-- Apenas admins autenticados podem operar.
 
 **Validações e Fluxos Alternativos:**
-- Se o colaborador não existir, retorna erro 404.
-- Se a permissão já estiver atribuída, retorna erro 400.
-- Se tentar remover permissão não existente, retorna erro 400.
-- Toda atribuição/remoção é registrada no histórico.
+- Colaborador inexistente: erro 404.
+- Permissão já atribuída: erro 400.
+- Permissão não atribuída ao remover: erro 400.
+- Toda atribuição/remoção é registrada no histórico (auditoria).
 - Apenas admins autenticados podem operar.
+
 
 ## 5. Modelagem de Telas (Wireframe simplificado)
+- Listagem de administradores
+- Cadastro/edição de admin
+- Atribuição de permissões (dropdown de permissões, lista de colaboradores)
+- Histórico de permissões
 
-- Tela: Listagem de administradores
-- Tela: Cadastro/edição de admin
-- Tela: Atribuição de permissões (dropdown de permissões, lista de colaboradores)
-- Tela: Histórico de permissões
 
 ## 6. Documentação e Validação
 
+> Este documento serve como referência viva para análise, modelagem e implementação do painel administrativo, e pode ser expandido para outros domínios do sistema conforme a evolução do projeto.
 
-> Este documento serve como referência para análise e modelagem do painel administrativo e pode ser expandido para outros domínios do sistema.
-## Observações
+---
+
+**Integração com Prisma:**
+O modelo RBAC apresentado está pronto para ser implementado via Prisma ORM, garantindo versionamento, rastreabilidade e fácil manutenção. Consulte o exemplo prático de modelagem Prisma na documentação de apoio.
 
 
