@@ -81,7 +81,25 @@ Colaborador --> (Acessar funcionalidade)
 # 4. Modelagem de Dados
 
 ### 4.1 Papéis Organizacionais e Permissões (RBAC Avançado)
-...existing code...
+...existing code...enum StatusAdmin {
+  ATIVO
+  INATIVO
+  BLOQUEADO
+}
+
+model Admin {
+  id            Int           @id @default(autoincrement())
+  nome          String
+  email         String        @unique
+  senha         String
+  criadoEm      DateTime      @default(now())
+  ultimoAcesso  DateTime?
+  status        StatusAdmin   @default(ATIVO)
+  roles         AdminRole[]
+  createdBy     Int?
+  updatedBy     Int?
+  updatedAt     DateTime?
+}
 
 # Análise e Modelagem de Sistemas — Serralheria API
 
