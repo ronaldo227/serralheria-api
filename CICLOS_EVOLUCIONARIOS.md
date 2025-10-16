@@ -13,7 +13,7 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 | 12/10/2025 | Checklist profissional de implementação e organização de prioridades | Aprimoramento da modelagem de permissões, fluxos e documentação | Adição de pasta privada para anotações pessoais e ajustes no .gitignore | Push, versionamento, revisão geral e orientações para evolução até 10/10 |
 | 13/10/2025 | Refino e profissionalização do modelo de permissões no banco | Alinhamento do RBAC avançado à modelagem Prisma | Documentação detalhada da estrutura de dados e histórico de permissões | Push das alterações no banco e documentação, garantindo rastreabilidade e versionamento |
 | 14/10/2025 |                           |                           |                           |                            |
-| 15/10/2025 | Configuração inicial do Prisma ORM |                           |                           | Preparação do ambiente para integração real com banco. Tempo estimado: 3 horas de produção |
+| 17/10/2025 | Configuração inicial do Prisma ORM |                           |                           | Preparação do ambiente para integração real com banco. Tempo estimado: 3 horas de produção |
 | 16/10/2025 | Início do ciclo de produção: painel admin, cadastro de clientes, ajustes no material de apoio | Implementação de rotas e controllers | Testes e documentação | Foco: funcionalidades do painel admin, cadastro/gestão de clientes, versionamento e documentação profissional. Atuação do CEO/Admin: definição de políticas, revisão de permissões e acompanhamento do progresso. |
 
 > Preencha diariamente com os acréscimos, ajustes ou tarefas realizadas. Recomenda-se registrar pelo menos 3 itens por dia para acompanhamento e análise da evolução do projeto.
