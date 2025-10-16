@@ -1,7 +1,5 @@
 
-## Sumário
 
-1. Contexto de Negócio
 2. Requisitos
 3. Casos de Uso
 4. Modelagem de Dados
@@ -13,13 +11,12 @@
 10. Compliance e Segurança
 11. Referências
 
+
+
+|--------------|--------------------------------------------------------------------------------------------------|
+| 16/10/2025   | Devido a pequenos erros, foi necessário realizar um rollback para a versão do dia 15/10/2025.    |
 ---
 
-# 1. Contexto de Negócio
-
-O sistema Serralheria API visa digitalizar e profissionalizar a gestão de uma serralheria, centralizando operações administrativas, controle de permissões, cadastro de clientes, pedidos, relatórios e auditoria. O foco é garantir segurança, rastreabilidade, agilidade e escalabilidade, preparando o sistema para crescimento e possível migração para SaaS.
-
-> Observação: Devido a pequenos erros, foi necessário realizar um rollback para a versão do dia 15/10/2025.
 ---
 
 # 2. Requisitos
@@ -39,7 +36,6 @@ O sistema Serralheria API visa digitalizar e profissionalizar a gestão de uma s
 - Disponibilidade: tolerância a falhas, backup automático.
 - Escalabilidade: arquitetura modular, RBAC expansível, pronto para multi-tenancy.
 
-## 2.3 Restrições e Premissas
 - Stack: Node.js, TypeScript, Express, Prisma ORM.
 - Banco relacional (PostgreSQL recomendado).
 - Integração futura com serviços externos (email, logs, monitoramento).
@@ -50,90 +46,19 @@ O sistema Serralheria API visa digitalizar e profissionalizar a gestão de uma s
 
 ## Exemplos
 - **UC01:** Admin cadastra novo colaborador (pré-condição: admin autenticado; pós-condição: colaborador registrado).
-- **UC02:** Admin atribui/remove permissão de colaborador (pré-condição: admin autenticado; pós-condição: permissão atualizada).
 - **UC03:** Colaborador acessa funcionalidade permitida (pré-condição: permissão atribuída; pós-condição: ação realizada).
 - **UC04:** Admin consulta histórico de permissões (pré-condição: admin autenticado; pós-condição: histórico exibido).
 
 ### Diagrama de Casos de Uso (Mermaid)
-```mermaid
-%% Diagrama simplificado
-actor Admin
-actor Colaborador
-Admin --> (Cadastrar colaborador)
-Admin --> (Atribuir/remover permissão)
-Admin --> (Consultar histórico)
-Colaborador --> (Acessar funcionalidade)
-```
-
-### Fluxos Alternativos e Respostas de Erro
-- Email já cadastrado: 400 Bad Request `{ "error": "Email já cadastrado." }`
-- Colaborador não encontrado: 404 Not Found `{ "error": "Colaborador não encontrado." }`
-- Permissão insuficiente: 403 Forbidden `{ "error": "Permissão insuficiente." }`
-- Nenhum histórico encontrado: 404 Not Found `{ "error": "Nenhum histórico encontrado." }`
-
-### Validações e Regras de Negócio
-- Email único e válido.
-- Senha forte (mín. 8 caracteres, maiúscula, minúscula, número).
-- Apenas admins autenticados podem criar, editar ou remover outros admins.
-- Não é permitido remover o próprio usuário autenticado.
-
----
-
-# 4. Modelagem de Dados
-
-### 4.1 Papéis Organizacionais e Permissões (RBAC Avançado)
-...existing code...enum StatusAdmin {
-  ATIVO
-  INATIVO
-  BLOQUEADO
-}
-
-model Admin {
-  id            Int           @id @default(autoincrement())
-  nome          String
-  email         String        @unique
-  senha         String
-  criadoEm      DateTime      @default(now())
-  ultimoAcesso  DateTime?
-  status        StatusAdmin   @default(ATIVO)
-  roles         AdminRole[]
-  createdBy     Int?
-  updatedBy     Int?
-  updatedAt     DateTime?
-}
-
-# Análise e Modelagem de Sistemas — Serralheria API
-
-Este documento detalha a análise e modelagem do sistema Serralheria API, com foco em práticas profissionais de Engenharia de Software, rastreabilidade, versionamento e integração real com o Prisma ORM. O objetivo é garantir que requisitos, regras de negócio, estrutura de dados e fluxos estejam totalmente alinhados à implementação, facilitando manutenção, auditoria e evolução do sistema.
-
----
-
-
-## 1. Levantamento e Especificação de Requisitos
 
 
 ### 1.1 Requisitos Funcionais
 - Cadastro, edição, remoção e listagem de administradores.
-- Definição e atribuição de papéis (roles) e permissões para cada usuário.
-- Controle de acesso a múltiplos domínios (clientes, pedidos, relatórios, etc.).
-- Registro e rastreabilidade do histórico de alterações de permissões (auditoria).
-
-
-### 1.2 Requisitos Não Funcionais
 - Segurança: criptografia de senhas, autenticação JWT, proteção de endpoints sensíveis.
 - Usabilidade: interfaces intuitivas e responsivas para o painel administrativo.
-- Escalabilidade: arquitetura modular e modelo RBAC expansível para novos domínios/permissões.
-
-
-### 1.3 Restrições e Premissas
-- Stack: Node.js, TypeScript, Express.
 - Banco de dados relacional, gerenciado via Prisma ORM.
 
----
-
-
 ## 2. Casos de Uso (Exemplos)
-- **UC01:** Admin cadastra novo colaborador.
 - **UC02:** Admin atribui/remove permissão de um colaborador.
 - **UC03:** Colaborador acessa funcionalidade permitida.
 - **UC04:** Admin consulta histórico de permissões.
@@ -154,17 +79,8 @@ Este documento detalha a análise e modelagem do sistema Serralheria API, com fo
       - Status: 403 Forbidden
       - Body: `{ "error": "Permissão insuficiente." }`
 - **UC04 - Fluxo alternativo:**
-    - Se não houver histórico para o admin:
-      - Status: 404 Not Found
-      - Body: `{ "error": "Nenhum histórico encontrado." }`
-
 
 ### Validações e Regras de Negócio (Admin)
-- Email único e válido.
-- Senha forte (mín. 8 caracteres, maiúscula, minúscula, número).
-- Apenas admins autenticados podem criar, editar ou remover outros admins.
-- Não é permitido remover o próprio usuário autenticado.
-
 
 ## 3. Modelagem de Dados (Entidades e Relacionamentos)
 ### Papéis Organizacionais e Permissões (RBAC Avançado)
