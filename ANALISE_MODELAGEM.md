@@ -1,19 +1,29 @@
 
-# Análise e Modelagem Profunda — Serralheria API
+## Sumário
 
-Este documento apresenta uma análise e modelagem profissional do sistema Serralheria API, abordando contexto de negócio, requisitos, casos de uso, modelagem de dados, processos, telas, API, testes, validação e estratégias de evolução. O objetivo é garantir alinhamento total entre requisitos, regras de negócio, estrutura de dados e implementação, facilitando manutenção, auditoria, escalabilidade e evolução futura.
+1. Contexto de Negócio
+2. Requisitos
+3. Casos de Uso
+4. Modelagem de Dados
+5. Processos
+6. Telas e UX/UI
+7. API (REST)
+8. Testes e Validação
+9. Estratégias de Evolução
+10. Compliance e Segurança
+11. Referências
 
 ---
 
-## 1. Contexto de Negócio
+# 1. Contexto de Negócio
 
 O sistema Serralheria API visa digitalizar e profissionalizar a gestão de uma serralheria, centralizando operações administrativas, controle de permissões, cadastro de clientes, pedidos, relatórios e auditoria. O foco é garantir segurança, rastreabilidade, agilidade e escalabilidade, preparando o sistema para crescimento e possível migração para SaaS.
 
 ---
 
-## 2. Requisitos
+# 2. Requisitos
 
-### 2.1 Funcionais
+## 2.1 Funcionais
 - [Admin] Cadastro, edição, remoção e listagem de administradores.
 - [Admin] Definição e atribuição de papéis (roles) e permissões.
 - [Cliente] Cadastro, edição, remoção e listagem de clientes.
@@ -21,29 +31,29 @@ O sistema Serralheria API visa digitalizar e profissionalizar a gestão de uma s
 - [Relatórios] Geração e consulta de relatórios gerenciais.
 - [Auditoria] Registro e rastreabilidade de todas alterações críticas.
 
-### 2.2 Não Funcionais
+## 2.2 Não Funcionais
 - Segurança: criptografia de senhas, autenticação JWT, proteção de endpoints sensíveis, conformidade LGPD.
 - Usabilidade: interfaces intuitivas, responsivas e acessíveis.
 - Performance: respostas rápidas, paginadas e escaláveis.
 - Disponibilidade: tolerância a falhas, backup automático.
 - Escalabilidade: arquitetura modular, RBAC expansível, pronto para multi-tenancy.
 
-### 2.3 Restrições e Premissas
+## 2.3 Restrições e Premissas
 - Stack: Node.js, TypeScript, Express, Prisma ORM.
 - Banco relacional (PostgreSQL recomendado).
 - Integração futura com serviços externos (email, logs, monitoramento).
 
 ---
 
-## 3. Casos de Uso
+# 3. Casos de Uso
 
-### Exemplos
+## Exemplos
 - **UC01:** Admin cadastra novo colaborador (pré-condição: admin autenticado; pós-condição: colaborador registrado).
 - **UC02:** Admin atribui/remove permissão de colaborador (pré-condição: admin autenticado; pós-condição: permissão atualizada).
 - **UC03:** Colaborador acessa funcionalidade permitida (pré-condição: permissão atribuída; pós-condição: ação realizada).
 - **UC04:** Admin consulta histórico de permissões (pré-condição: admin autenticado; pós-condição: histórico exibido).
 
-#### Diagrama de Casos de Uso (Mermaid)
+### Diagrama de Casos de Uso (Mermaid)
 ```mermaid
 %% Diagrama simplificado
 actor Admin
@@ -54,13 +64,13 @@ Admin --> (Consultar histórico)
 Colaborador --> (Acessar funcionalidade)
 ```
 
-#### Fluxos Alternativos e Respostas de Erro
+### Fluxos Alternativos e Respostas de Erro
 - Email já cadastrado: 400 Bad Request `{ "error": "Email já cadastrado." }`
 - Colaborador não encontrado: 404 Not Found `{ "error": "Colaborador não encontrado." }`
 - Permissão insuficiente: 403 Forbidden `{ "error": "Permissão insuficiente." }`
 - Nenhum histórico encontrado: 404 Not Found `{ "error": "Nenhum histórico encontrado." }`
 
-#### Validações e Regras de Negócio
+### Validações e Regras de Negócio
 - Email único e válido.
 - Senha forte (mín. 8 caracteres, maiúscula, minúscula, número).
 - Apenas admins autenticados podem criar, editar ou remover outros admins.
@@ -68,7 +78,7 @@ Colaborador --> (Acessar funcionalidade)
 
 ---
 
-## 4. Modelagem de Dados
+# 4. Modelagem de Dados
 
 ### 4.1 Papéis Organizacionais e Permissões (RBAC Avançado)
 ...existing code...
