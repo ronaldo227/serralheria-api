@@ -19,6 +19,7 @@
 
 O sistema Serralheria API visa digitalizar e profissionalizar a gestão de uma serralheria, centralizando operações administrativas, controle de permissões, cadastro de clientes, pedidos, relatórios e auditoria. O foco é garantir segurança, rastreabilidade, agilidade e escalabilidade, preparando o sistema para crescimento e possível migração para SaaS.
 
+> Observação: Devido a pequenos erros, foi necessário realizar um rollback para a versão do dia 15/10/2025.
 ---
 
 # 2. Requisitos
