@@ -4,6 +4,11 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 
 ---
 
+## Princípios de Desenvolvimento do Projeto
+
+> **Aviso:** Este projeto será desenvolvido inteiramente sem o uso de ferramentas de inteligência artificial. O objetivo é desafiar e expandir meu conhecimento técnico, confiando exclusivamente na documentação oficial e em pesquisa independente durante todo o processo de codificação.
+
+---
 
 ## Colograma de Produção Diária
 
