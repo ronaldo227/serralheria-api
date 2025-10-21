@@ -30,7 +30,7 @@
 - [Auditoria] Registro e rastreabilidade de todas alterações críticas.
 
 ## 2.2 Não Funcionais
-- Segurança: criptografia de senhas, autenticação JWT, proteção de endpoints sensíveis, conformidade LGPD.
+Segurança: criptografia de senhas, autenticação JWT, proteção de endpoints sensíveis, conformidade LGPD. (Em análise: possível integração futura com login via Google - OAuth 2.0)
 - Usabilidade: interfaces intuitivas, responsivas e acessíveis.
 - Performance: respostas rápidas, paginadas e escaláveis.
 - Disponibilidade: tolerância a falhas, backup automático.
