@@ -4,7 +4,7 @@
   "description": "API para gestão de serralherias",
   "main": "dist/index.js",
   "scripts": {
-  "dev": "ts-node-dev app.ts",
+    "dev": "node --import=tsx --watch src/app.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
@@ -32,6 +32,7 @@
     "@types/node": "^20.11.30",
     "prisma": "^6.17.0",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   },
   "directories": {
