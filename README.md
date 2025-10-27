@@ -63,11 +63,13 @@ Sistema completo para gestão de serralherias, desenvolvido em Node.js com TypeS
 ```text
 serralheria-api/
 ├── src/
+   
 │   ├── controllers/
 │   ├── models/
 │   ├── repositories/
 │   ├── routes/
 │   ├── services/
+│   ├── services.ts
 │   ├── middlewares/
 │   ├── utils/
 │   └── config/
@@ -107,6 +109,43 @@ Utilize o quadro Kanban para acompanhar o progresso das tarefas. Veja sugestões
 
 ---
 
+
+## Segurança e Middleware
+
+Para garantir segurança e integração com frontends, utilize os seguintes middlewares no Express:
+
+### CORS
+Permite requisições de outros domínios (Cross-Origin Resource Sharing).
+
+Instalação:
+```bash
+npm install cors
+```
+Uso básico:
+```typescript
+import cors from 'cors';
+app.use(cors());
+```
+Configuração de origem específica:
+```typescript
+app.use(cors({ origin: 'http://seu-frontend.com' }));
+```
+
+### Helmet
+Adiciona headers HTTP para proteger contra vulnerabilidades comuns.
+
+Instalação:
+```bash
+npm install helmet
+```
+Uso:
+```typescript
+import helmet from 'helmet';
+app.use(helmet());
+```
+
+---
+
 ## Roadmap
 - [x] Estrutura base do projeto
 - [x] Documentação inicial
@@ -115,11 +154,6 @@ Utilize o quadro Kanban para acompanhar o progresso das tarefas. Veja sugestões
 - [ ] Domínios operacionais (clientes, pedidos, etc)
 - [ ] Testes automatizados
 - [ ] Deploy e monitoramento
-
----
-
-## Como contribuir
-Contribuições são bem-vindas! Para colaborar, solicite acesso ao painel administrativo e siga as diretrizes do projeto.
 
 ---
 
