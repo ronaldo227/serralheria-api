@@ -2,7 +2,7 @@
 
 This file contains a high-level class diagram (Mermaid) with the main domain entities and services.
 
-```mermaid
+[old_code]
 classDiagram
   %% ======================
   %% ENTIDADES
