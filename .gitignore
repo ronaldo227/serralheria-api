@@ -17,3 +17,7 @@ coverage/
 AUTORIZACAO_DE_USO.md
 LICENCA_ANALISE.txt
 _anotacoes_pessoais/
+
+/src/generated/prisma
+
+/src/generated/prisma
