@@ -27,12 +27,29 @@ Este projeto é proprietário. O uso, cópia, modificação ou distribuição s�
 
 
 ## 📑 Sumário
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Como Executar](#como-executar)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Domínios](#domínios)
+- [Exemplo de Uso](#exemplo-de-uso)
+- [Tecnologias](#tecnologias)
+- [Contato](#contato)
 
 
 
 ## Sobre o Projeto
+Sistema completo para gestão de serralherias, desenvolvido em Node.js com TypeScript e Express, seguindo boas práticas de arquitetura modular e segurança.
 
 ---
+
+## Como Executar
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
+2. Execute em modo desenvolvimento:
+   ```bash
+   npm run dev
    ```
 3. Para build e produção:
    ```bash
