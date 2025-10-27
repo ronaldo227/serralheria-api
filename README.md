@@ -69,7 +69,7 @@ serralheria-api/
 │   ├── repositories/
 │   ├── routes/
 │   ├── services/
-│   ├── services.ts
+│   ├── app.ts
 │   ├── middlewares/
 │   ├── utils/
 │   └── config/
