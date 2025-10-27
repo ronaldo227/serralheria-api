@@ -1,5 +1,7 @@
 # Class Diagram — Serralheria API
 
+![Class Diagram](img/class_diagram.png)
+
 This file contains a high-level class diagram (Mermaid) with the main domain entities and services.
 
 [old_code]
