@@ -154,7 +154,24 @@ erDiagram
   }
 ```
 
+
 #### Exemplo de Modelagem Prisma (prático)
+
+##### Tabela de Auditoria
+
+```prisma
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  action     String
+  entity     String
+  entityId   Int?
+  before     Json?
+  after      Json?
+  timestamp  DateTime @default(now())
+}
+```
+
 
 ```prisma
 model Admin {
