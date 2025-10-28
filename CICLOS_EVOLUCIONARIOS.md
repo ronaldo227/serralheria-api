@@ -20,6 +20,7 @@ Este arquivo serve para documentar cada ciclo de evolução do projeto, seguindo
 | 14/10/2025 |                           |                           |                           |                            |
 | 16/10/2025 |  |  |  | Observação: Devido a pequenos erros, foi necessário realizar um rollback para a versão do dia 15/10/2025. |
 | 27/10/2025 | Diagrama de classes (Mermaid) criado e documentado no projeto | Sincronização e restauração de arquivos no GitHub | Configuração inicial do Prisma ORM e integração dos arquivos de ambiente | Documentação, QA do diagrama, push dos arquivos restaurados e imagem do diagrama para o repositório |
+| 28/10/2025 | Criação do utilitário de conexão Prisma (src/utils/prisma.ts) |  
 | 01/11/2025 | Início do ciclo de produção: painel admin, cadastro de clientes, ajustes no material de apoio | Implementação de rotas e controllers | Testes e documentação | Foco: funcionalidades do painel admin, cadastro/gestão de clientes, versionamento e documentação profissional. Atuação do CEO/Admin: definição de políticas, revisão de permissões e acompanhamento do progresso. |
 
 > Preencha diariamente com os acréscimos, ajustes ou tarefas realizadas. Recomenda-se registrar pelo menos 3 itens por dia para acompanhamento e análise da evolução do projeto.
