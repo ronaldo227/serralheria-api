@@ -1,3 +1,5 @@
+# Pasta de anotações privadas
+private_notes/
 # Ignora arquivos e pastas sensíveis ou restritos
 .env
 *.env
