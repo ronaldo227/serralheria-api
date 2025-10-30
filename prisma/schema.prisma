@@ -13,3 +13,53 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+/// Admin: Usuário do sistema com papéis e permissões
+model Admin {
+  id            Int           @id @default(autoincrement())
+  nome          String
+  email         String        @unique
+  senha         String
+  criadoEm      DateTime      @default(now())
+  ultimoAcesso  DateTime?
+  status        String
+  roles         AdminRole[]
+}
+
+/// Role: Papel organizacional (CEO, Diretor, etc.) com permissões associadas
+model Role {
+  id          Int             @id @default(autoincrement())
+  nome        String          @unique
+  descricao   String?
+  admins      AdminRole[]
+  permissoes  RolePermission[]
+}
+
+/// Permissao: Permissão granular do sistema (ex: FULL_ACCESS, GERENCIAR_DEPARTAMENTO)
+model Permissao {
+  id          Int             @id @default(autoincrement())
+  nome        String          @unique
+  descricao   String?
+  roles       RolePermission[]
+}
+
+/// AdminRole: Relação N:N entre Admin e Role, registra atribuição de papéis
+model AdminRole {
+  id         Int       @id @default(autoincrement())
+  admin      Admin     @relation(fields: [adminId], references: [id])
+  adminId    Int
+  role       Role      @relation(fields: [roleId], references: [id])
+  roleId     Int
+  atribuidoEm DateTime @default(now())
+}
+
+/// RolePermission: Relação N:N entre Role e Permissao, registra permissões de cada papel
+model RolePermission {
+  id           Int         @id @default(autoincrement())
+  role         Role        @relation(fields: [roleId], references: [id])
+  roleId       Int
+  permissao    Permissao   @relation(fields: [permissaoId], references: [id])
+  permissaoId  Int
+  concedidoEm  DateTime    @default(now())
+}

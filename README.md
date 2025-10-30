@@ -60,6 +60,36 @@ Sistema completo para gestão de serralherias, desenvolvido em Node.js com TypeS
 ---
 
 ## Estrutura do Projeto
+
+### Modelagem RBAC (Controle de Acesso)
+
+O sistema utiliza um modelo avançado de controle de acesso baseado em papéis (RBAC):
+
+- **Admin**: Usuário do sistema, pode ter múltiplos papéis.
+- **Role**: Papéis organizacionais (CEO, Diretor, Gerente, etc.), cada um com permissões específicas.
+- **Permissao**: Permissões granulares (ex: FULL_ACCESS, GERENCIAR_DEPARTAMENTO).
+- **AdminRole**: Relação N:N entre Admin e Role, registra atribuição de papéis.
+- **RolePermission**: Relação N:N entre Role e Permissao, registra permissões de cada papel.
+
+Exemplo de permissões:
+- FULL_ACCESS
+- GERENCIAR_DEPARTAMENTO
+- APROVAR_ORCAMENTOS
+- VISUALIZAR_RELATORIOS
+- GERENCIAR_EQUIPE
+- CONTROLAR_PEDIDOS
+- CONTROLAR_ESTOQUE
+- GERENCIAR_COLABORADORES
+- ATUALIZAR_STATUS
+- VISUALIZAR_MATERIAIS
+
+Essas entidades estão modeladas no arquivo `prisma/schema.prisma` e documentadas em `ANALISE_MODELAGEM.md`.
+
+### Documentação Técnica
+
+- Diagrama de classes: consulte `ANALISE_MODELAGEM.md` ou `docs/CLASS_DIAGRAM.md`.
+- Registro de ciclos evolutivos: veja `CICLOS_EVOLUCIONARIOS.md` para histórico de decisões e avanços.
+- Comentários explicativos nos modelos Prisma e principais controllers/routes.
 ```text
 serralheria-api/
 ├── src/
