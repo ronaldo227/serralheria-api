@@ -11,11 +11,6 @@ Este documento define as convenções para escrever e manter diagramas de classe
 - Atributos e métodos dentro do bloco da classe, por exemplo:
   - `+string email`
   - `+login(email, senha) bool` (coloque um espaço antes do tipo de retorno)
-- Anotações (estereótipos) em linha separada após a classe para compatibilidade com GitHub:
-  - `<<Service>> NomeDaClasse`
-  - `<<Controller>> NomeDaClasse`
-  - `<<Entity>> NomeDaClasse`
-  - `<<Enumeration>> NomeDaClasse`
 - Relacionamentos:
   - Herança: `Pai <|-- Filho`
   - Associação: `A --> B : rotulo`
@@ -44,7 +39,6 @@ classDiagram
     }
     Entidade <|-- SubEntidade
     Entidade "1" --> "*" Outra : relaciona
-    <<Entity>> Entidade
 ```
 
 ## Quando atualizar
@@ -53,7 +47,6 @@ classDiagram
 - Antes de abrir PR: inclua ajustes de diagrama se houver impacto.
 
 ## Checklist (rápido)
-- [ ] Anotações em linhas separadas (`<<...>> Classe`)
 - [ ] Sem `//` dentro do Mermaid
 - [ ] Herança e multiplicidade corretas
 - [ ] Nome do arquivo padronizado em `docs/`
