@@ -3,7 +3,11 @@
 ```mermaid
 classDiagram
     class PedidoController {
-        // Métodos base para implementar
+        <<Controller>>
+        +listar()
+        +criar(dados)
+        +atualizar(id, dados)
+        +cancelar(id)
     }
 ```
 

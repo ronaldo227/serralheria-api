@@ -8,7 +8,6 @@ classDiagram
         +string email
         +string telefone
         +string endereco
-        // ...outros campos relevantes
     }
 ```
 

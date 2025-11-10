@@ -3,7 +3,10 @@
 ```mermaid
 classDiagram
     class UsuarioController {
-        // Métodos base para implementar
+        <<Controller>>
+        +login(email, senha)
+        +logout()
+        +registrar(dados)
     }
 ```
 

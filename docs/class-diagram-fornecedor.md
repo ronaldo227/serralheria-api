@@ -3,7 +3,11 @@
 ```mermaid
 classDiagram
     class FornecedorController {
-        // Métodos base para implementar
+        <<Controller>>
+        +listar()
+        +criar(dados)
+        +atualizar(id, dados)
+        +remover(id)
     }
 ```
 
