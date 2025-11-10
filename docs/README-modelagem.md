@@ -6,12 +6,6 @@ Este documento define as convenções para escrever e manter diagramas de classe
 - Padronizar a modelagem das entidades e camadas (controllers/serviços) do sistema.
 - Facilitar a leitura e revisão durante os ciclos evolutivos.
 
-## Ferramenta
-- Sintaxe: Mermaid `classDiagram`
-- Renderização: GitHub (arquivos `.md`) e pré-visualização no VS Code
-
-Referência rápida: https://mermaid.js.org/syntax/classDiagram.html
-
 ## Convenções de escrita
 - Visibilidade: `+` público, `-` privado, `#` protegido, `~` interno.
 - Atributos e métodos dentro do bloco da classe, por exemplo:
