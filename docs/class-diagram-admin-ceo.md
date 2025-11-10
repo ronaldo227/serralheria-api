@@ -9,7 +9,6 @@ classDiagram
         +string[] permissoes
     }
     class CEO_PERMISSIONS {
-        <<Enumeration>>
         FULL_ACCESS
         GERENCIAR_DEPARTAMENTO
         APROVAR_ORCAMENTOS

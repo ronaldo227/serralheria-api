@@ -3,7 +3,6 @@
 ```mermaid
 classDiagram
     class MaterialController {
-        <<Controller>>
         +listar()
         +criar(dados)
         +atualizar(id, dados)

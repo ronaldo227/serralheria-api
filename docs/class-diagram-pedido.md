@@ -3,7 +3,6 @@
 ```mermaid
 classDiagram
     class PedidoController {
-        <<Controller>>
         +listar()
         +criar(dados)
         +atualizar(id, dados)

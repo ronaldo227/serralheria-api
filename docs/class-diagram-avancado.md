@@ -3,7 +3,6 @@
 ```mermaid
 classDiagram
     class Usuario {
-        <<Service>>
         +int id
         +string nome
         +string email
@@ -30,14 +29,12 @@ classDiagram
         -validar() bool
     }
     class Fornecedor {
-        <<Service>>
         +int id
         +string nome
         +string cnpj
         +fornecerMaterial(material: Material) bool
     }
     class Material {
-        <<Entity>>
         +int id
         +string nome
         +string tipo
@@ -52,7 +49,6 @@ classDiagram
     Pedido "*" --> "1" Fornecedor : fornecidoPor
     Fornecedor "1" --> "*" Material : fornece
     Pedido "*" --> "*" Material : inclui
-    
 ```
 
 > Exemplo avançado: visibilidade, métodos, relacionamentos, anotações e multiplicidade.
