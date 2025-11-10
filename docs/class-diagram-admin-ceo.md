@@ -6,7 +6,7 @@ classDiagram
         +int id
         +string nome
         +string email
-        +string senha
+        -string senha
         +Date criadoEm
         +Date ultimoAcesso
         +boolean ativo
@@ -16,6 +16,9 @@ classDiagram
         +removerAdmin(id) boolean
         +atribuirPermissoes(adminId, permissoes) boolean
         +revogarPermissoes(adminId, permissoes) boolean
+        -validarSenha(senha) boolean
+        -criptografarSenha(senha) string
+        -validarEmail(email) boolean
     }
     class Role {
         +int id
@@ -25,6 +28,7 @@ classDiagram
         +criarRole(dados) Role
         +atualizarRole(id, dados) Role
         +listarRoles() Role[]
+        -validarNivelHierarquico(nivel) boolean
     }
     class Permissao {
         +int id
@@ -33,6 +37,7 @@ classDiagram
         +string modulo
         +criarPermissao(dados) Permissao
         +listarPermissoes() Permissao[]
+        -validarCodigo(codigo) boolean
     }
     class AdminRole {
         +int adminId
